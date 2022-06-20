@@ -7,17 +7,17 @@ public class TaskTwo {
     }
 
     public static Integer evenFibonacciNumbers(int valuesNotExceed) {
-        int a = 1;
-        int b = 2;
-        int fib = 0;
+        int previous = 1;
+        int current = 2;
+        int next = 0;
         int sum = 2;
 
-        while (fib < valuesNotExceed) {
-            fib = a + b;
-            a = b;
-            b = fib;
-            if (fib % 2 == 0) {
-                sum += fib;
+        while (next < valuesNotExceed) {
+            next = previous + current;
+            previous = current;
+            current = next;
+            if (next % 2 == 0) {
+                sum += next;
             }
         }
         return sum;
