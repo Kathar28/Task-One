@@ -19,26 +19,26 @@ class Lamp {
     }
 
     public Lamp(String color) {
-        this.isOn = false;
-        this.isBroken = false;
+        isOn = false;
+        isBroken = false;
         this.color = color;
     }
 
     public void turnOn() {
     isOn = true;
-    this.turnOnCounter++;
-    if (this.turnOnCounter == 3){
+    turnOnCounter++;
+    if (turnOnCounter == 3){
         brokeLamp();
     }
     }
 
     public void brokeLamp(){
-        this.isBroken = true;
-        this.isOn = false;
+        isBroken = true;
+        isOn = false;
     }
 
     public void turnOff() {
-    this.isOn = false;
+    isOn = false;
     }
 
     public void lampInfo(){
