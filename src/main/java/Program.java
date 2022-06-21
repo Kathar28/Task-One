@@ -33,7 +33,7 @@ public class Program {
         int previous = 1;
         int current = 2;
         int next = 0;
-        int sumOfMax = 2;
+        int sumOfMax = 0;
         int sumOfMin = 2;
 
         while (next < minNotExceed){
