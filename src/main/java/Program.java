@@ -7,54 +7,45 @@ public class Program {
 
     public static void main(String[] args) {
         System.out.println("Сумма всех значений, кратных 3 и 5 ниже 1000 равна :" +
-                multiplesOf(1000, 3, 5));
+                getSumOfNaturalMultiples(1000, 3, 5));
 
-        System.out.println("Сумма всех значений, кратных 4 и 7 ниже 1000 равна :"+
-                multiplesOf(1000, 4, 7));
+        System.out.println("Сумма всех значений, кратных 4 и 7 ниже 1000 равна :" +
+                getSumOfNaturalMultiples(1000, 4, 7));
 
 
-        System.out.println("Суммы четных значений чисел фибоначи, не превышающих 100 и 4 млн. : " +
-                Arrays.toString(evenFibonacciNumbers(4000000, 100)).
-                        replaceAll("^\\[|\\]$", ""));
+        System.out.println("Суммы четных значений чисел фибоначи, не превышающих 100 : " +
+                getSumEvenFibonacciNumbers(100));
+
+        System.out.println("Суммы четных значений чисел фибоначи, не превышающих 4 млн : " +
+                getSumEvenFibonacciNumbers(4000000));
+
     }
 
-    public static Integer multiplesOf(int valuesBelow, int firstMultiple, int secondMultiple) {
+    public static int getSumOfNaturalMultiples(int max, int divider1, int divider2) {
         int sum = 0;
 
-        for (int i = 1; i < valuesBelow; i++) {
-            if ((i % firstMultiple == 0) || (i % secondMultiple == 0)) {
+        for (int i = 1; i < max; i++) {
+            if ((i % divider1 == 0) || (i % divider2 == 0)) {
                 sum += i;
             }
         }
         return sum;
     }
 
-    public static Integer[] evenFibonacciNumbers(int maxNotExceed, int minNotExceed) {
+    public static int getSumEvenFibonacciNumbers(int max) {
         int previous = 1;
         int current = 2;
-        int next = 0;
-        int sumOfMax = 0;
-        int sumOfMin = 2;
+        int next = current + previous;
+        int sum = 2;
 
-        while (next < minNotExceed){
-            next = previous + current;
-            previous = current;
-            current = next;
-            System.out.println(next);
-            if (next % 2 == 0) {
-                sumOfMin += next;
-            }
-        }
-
-        while (next < maxNotExceed) {
+        while (previous + current < max) {
             next = previous + current;
             previous = current;
             current = next;
             if (next % 2 == 0) {
-                sumOfMax += next;
+                sum += next;
             }
-
         }
-        return new Integer[]{sumOfMax + sumOfMin, sumOfMin};
+        return sum;
     }
 }
