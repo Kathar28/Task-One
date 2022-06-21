@@ -7,10 +7,10 @@ public class Program {
 
     public static void main(String[] args) {
         System.out.println("Сумма всех значений, кратных 3 и 5 ниже 1000 равна :" +
-                multiplesOfThreeOrFive(1000, 3, 5));
+                multiplesOf(1000, 3, 5));
 
         System.out.println("Сумма всех значений, кратных 4 и 7 ниже 1000 равна :"+
-                multiplesOfThreeOrFive(1000, 4, 7));
+                multiplesOf(1000, 4, 7));
 
 
         System.out.println("Суммы четных значений чисел фибоначи, не превышающих 100 и 4 млн. : " +
@@ -18,7 +18,7 @@ public class Program {
                         replaceAll("^\\[|\\]$", ""));
     }
 
-    public static Integer multiplesOfThreeOrFive(int valuesBelow, int firstMultiple, int secondMultiple) {
+    public static Integer multiplesOf(int valuesBelow, int firstMultiple, int secondMultiple) {
         int sum = 0;
 
         for (int i = 1; i < valuesBelow; i++) {
