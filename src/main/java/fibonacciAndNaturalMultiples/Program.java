@@ -1,11 +1,9 @@
-package main.java;
-
-import java.lang.reflect.Array;
-import java.util.Arrays;
+package main.java.fibonacciAndNaturalMultiples;
 
 public class Program {
 
     public static void main(String[] args) {
+
         System.out.println("Сумма всех значений, кратных 3 и 5 ниже 1000 равна :" +
                 getSumOfNaturalMultiples(1000, 3, 5));
 
