@@ -43,12 +43,12 @@ class Lamp {
 
     public void lampInfo(){
         if(isOn){
-            System.out.println("Лампа цвета - " + color + " включена.");
+            System.out.println("Лампа цвета - " + getColor() + " включена.");
         }else {
-            System.out.println("Лампа цвета - " + color + " выключена.");
+            System.out.println("Лампа цвета - " + getColor() + " выключена.");
         }
         if(isBroken){
-            System.out.println("Лампа цвета - " + color + " сломана.");
+            System.out.println("Лампа цвета - " + getColor() + " сломана.");
         }
 
     }
