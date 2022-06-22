@@ -16,7 +16,6 @@ class Lamp {
 
     private String color;
 
-
     public Lamp(String color, int voltageLamp, int usageResource) {
         isOn = false;
         isBroken = false;
@@ -84,7 +83,6 @@ class Lamp {
     public void setUsageResource(int usageResource) {
         this.usageResource = usageResource;
     }
-
 
     public int getTurnOnCounter() {
         return turnOnCounter;
