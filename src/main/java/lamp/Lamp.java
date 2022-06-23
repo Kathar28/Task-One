@@ -12,38 +12,44 @@ class Lamp {
 
     private final int voltageLamp;
 
-    private int voltagePower;
+    //Убрать это параметр
+
 
     private String color;
 
     public Lamp(String color, int voltageLamp, int usageResource) {
         isOn = false;
         isBroken = false;
-        voltagePower = 220;
         this.color = color;
         this.voltageLamp = voltageLamp;
         this.usageResource = usageResource;
     }
 
-    public void turnOn() {
-        if (!isBroken || turnOnCounter != usageResource || voltagePower == voltageLamp) {
-            isOn = true;
-            turnOnCounter++;
-        } else {
-            brokeLamp();
-        }
-        if (voltagePower > voltageLamp) {
-            brokeLamp();
-        }
-        if (voltagePower < voltageLamp) {
-            turnOff();
-        }
+    public void turnOn(int voltagePower) {
+       if(isOn){
+           System.out.println("Лампа уже включена");
+       }else if(isBroken){
+           System.out.println("Лампа сломана, вы не можете её включить");
+       }else {
+           isOn = true;
+           if(voltagePower > voltageLamp){
+               isOn = false;
+               brokeLamp();
+               System.out.println("Лампа сломана из-за высокого напряжения");
+           }
+           if(voltagePower < voltageLamp){
+               isOn = false;
+              System.out.println("Лампа не включилась, не хватает напряжения");
+           }
+
+       }
     }
 
     public void turnOff() {
-        if (!isBroken) {
-            isOn = false;
+        if(!isOn){
+            System.out.println("Лампа уже выключена");
         }
+            isOn = false;
     }
 
     private void brokeLamp() {
@@ -61,61 +67,37 @@ class Lamp {
     public void lampState() {
         if (isOn) {
             System.out.println("Лампа включена.");
-        } else if (voltagePower < voltageLamp) {
-            System.out.println("Лампа выключена. Не хватает напряжения.");
-        } else {
+        } else if (!isBroken){
             System.out.println("Лампа выключена.");
         }
-
-        if (isBroken && turnOnCounter == usageResource) {
-            System.out.println("Лампа сломана. Ресурс лампы выработан");
+        else {
+            System.out.println("Лампа сломана.");
         }
 
-        if (isBroken && voltagePower > voltageLamp) {
-            System.out.println("Лампа сломана из-за высокого напряжения");
-        }
     }
 
     public int getUsageResource() {
         return usageResource;
     }
 
-    public void setUsageResource(int usageResource) {
-        this.usageResource = usageResource;
-    }
+
 
     public int getTurnOnCounter() {
         return turnOnCounter;
     }
 
-    public void setTurnOnCounter(int turnOnCounter) {
-        this.turnOnCounter = turnOnCounter;
-        if (usageResource == turnOnCounter) {
-            brokeLamp();
-        } else {
-            isOn = true;
-        }
-    }
+
 
     public int getVoltageLamp() {
         return voltageLamp;
     }
 
-    public void setVoltagePower(int voltagePower) {
-        this.voltagePower = voltagePower;
-        if (voltageLamp != voltagePower) {
-            brokeLamp();
-        }
-    }
+
 
     public String getColor() {
         return color;
     }
 
-    public void setColor(String color) {
-        if (!isBroken) {
-            this.color = color;
-        }
-    }
+
 
 }
