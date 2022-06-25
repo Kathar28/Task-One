@@ -17,19 +17,19 @@ public class Account {
     }
 
     public void withdraw(double value) {
-        if (balance < value) {
-            System.out.println("У вас не достаточно средств для вывода средств");
-        } else {
+        if (balance > value) {
             balance -= value;
+        } else {
+            System.out.println("У вас не достаточно средств для вывода средств");
         }
     }
 
     public void transfer(Account to, double valueToTransfer) {
-        if (balance < 0 || balance < valueToTransfer) {
-            System.out.println("На счёту (" + accountNumber + ") не достаточно средств для перевода");
+        if (balance > 0 || balance > valueToTransfer) {
+            balance -=valueToTransfer;
+            to.balance += valueToTransfer;
         } else {
-            withdraw(valueToTransfer);
-            to.deposit(valueToTransfer);
+            System.out.println("На счёту (" + accountNumber + ") не достаточно средств для перевода");
         }
     }
 
