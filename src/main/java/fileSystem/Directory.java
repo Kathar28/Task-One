@@ -29,10 +29,8 @@ public class Directory extends SystemTypes {
     public int getContentSize(SystemTypes node, int sum) {
         for (SystemTypes data : node.getContent()) {
             if (data instanceof Directory) {
-                System.out.println("Directory " + data.getName());
                 sum = 1 + getContentSize(data, sum);
             } else if (data instanceof File) {
-                System.out.println("File " + data.getName());
                sum += ((File) data).getSize();
             }
         }

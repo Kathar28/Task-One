@@ -13,10 +13,9 @@ public class Main {
                 root.get(2).add(new Directory("directory2"));
                         root.get(2).get(2).add(new File("file4.txt", 250));
 
-//        System.out.println(root.get(1) instanceof File);
-//        System.out.println(root.getContentSize(root, root.getSize()));
+        System.out.println(root.getContentSize(root, root.getSize()));
 
-//        System.out.println(root.get(2).get(2).getPath(root, "root"));
-        System.out.println(root.get(2).get(2).get(0).getPath(root, "root"));
+        System.out.println(root.get(2).get(2).getPath(root, root.getName()));
+        System.out.println(root.get(2).get(2).get(0).getPath(root, root.getName()));
     }
 }

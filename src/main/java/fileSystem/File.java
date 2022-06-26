@@ -20,7 +20,7 @@ public class File extends SystemTypes {
                     path += "/" + data.getName();
                 }
             } else if (data instanceof Directory) {
-                if (((Directory) data).getContent().isEmpty()) {
+                if (data.getContent().isEmpty()) {
                     continue;
                 } else {
                     path += "/" + data.getName() + getPath(data, "");
