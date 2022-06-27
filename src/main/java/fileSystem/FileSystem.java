@@ -25,7 +25,7 @@ public abstract class FileSystem {
         return this.size;
     }
 
-    public FileSystem get(int index) {
+    public FileSystem getElement(int index) {
         return null;
     }
 

@@ -14,7 +14,7 @@ public class Directory extends FileSystem {
     }
 
     @Override
-    public FileSystem get(int index) {
+    public FileSystem getElement(int index) {
         return content.get(index);
     }
 
