@@ -26,12 +26,17 @@ public class Directory extends SystemTypes {
     }
 
     @Override
+    public List<SystemTypes> getContent() {
+        return this.content;
+    }
+
+    @Override
     public int getContentSize(SystemTypes node, int sum) {
         for (SystemTypes data : node.getContent()) {
             if (data instanceof Directory) {
                 sum = 1 + getContentSize(data, sum);
             } else if (data instanceof File) {
-               sum += ((File) data).getSize();
+                sum += data.getSize();
             }
         }
         return sum;
@@ -39,24 +44,19 @@ public class Directory extends SystemTypes {
 
     @Override
     public String getPath(SystemTypes node, String path) {
-        for(SystemTypes data: node.getContent()){
-            if(data instanceof Directory){
-                if(data.getName() == this.getName()){
+        for (SystemTypes data : node.getContent()) {
+            if (data instanceof Directory) {
+                if (data.getName() == this.getName()) {
                     path += "/" + data.getName();
                     return path;
-                }else if(((Directory) data).content.isEmpty()){
+                } else if (((Directory) data).content.isEmpty()) {
                     continue;
-                }else {
+                } else {
                     path += "/" + data.getName() + getPath(data, "");
                 }
             }
         }
         return path;
-    }
-
-    @Override
-    public List<SystemTypes> getContent(){
-        return this.content;
     }
 
     @Override
