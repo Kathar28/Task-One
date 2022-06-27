@@ -29,7 +29,7 @@ public abstract class FileSystem {
         return null;
     }
 
-    public void add(FileSystem types) {
+    public abstract void addElement(FileSystem type) {
     }
 
     public String getPath() {

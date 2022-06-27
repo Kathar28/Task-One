@@ -18,8 +18,8 @@ public class Directory extends FileSystem {
         return content.get(index);
     }
 
-    @Override
-    public void add(FileSystem types) {
+
+    public void addElement(FileSystem types) {
         types.setPath(getPath());
         content.add(types);
     }
