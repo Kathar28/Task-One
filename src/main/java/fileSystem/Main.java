@@ -4,14 +4,14 @@ public class Main {
 
     public static void main(String[] args) {
         Directory root = new Directory("root");
-        root.add(new File("file0.txt", 150));
-        root.add(new File("file1.txt", 250));
-        root.add(new Directory("directory"));
-        root.getElement(2).add(new File("file2.txt", 250));
-        root.getElement(2).add(new File("file3.txt", 250));
-        root.getElement(2).add(new Directory("directory1"));
-        root.getElement(2).getElement(2).add(new File("file4.txt", 250));
-        root.getElement(2).add(new Directory("directory2"));
+        root.addElement(new File("file0.txt", 150));
+        root.addElement(new File("file1.txt", 250));
+        root.addElement(new Directory("directory"));
+        root.getElement(2).addElement(new File("file2.txt", 250));
+        root.getElement(2).addElement(new File("file3.txt", 250));
+        root.getElement(2).addElement(new Directory("directory1"));
+        root.getElement(2).getElement(2).addElement(new File("file4.txt", 250));
+        root.getElement(2).addElement(new Directory("directory2"));
 
         System.out.println(root.getPath());
 
