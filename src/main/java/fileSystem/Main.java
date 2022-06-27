@@ -10,12 +10,19 @@ public class Main {
         root.get(2).add(new File("file2.txt", 250));
         root.get(2).add(new File("file3.txt", 250));
         root.get(2).add(new Directory("directory1"));
-        root.get(2).add(new Directory("directory2"));
         root.get(2).get(2).add(new File("file4.txt", 250));
+        root.get(2).add(new Directory("directory2"));
 
-        System.out.println(root.getContentSize(root, root.getSize()));
+        System.out.println(root.getPath());
 
-        System.out.println(root.get(2).get(2).getPath(root, root.getName()));
-        System.out.println(root.get(2).get(2).get(0).getPath(root, root.getName()));
+        System.out.println(root.getSize());
+
+        System.out.println(root.get(2).get(2).getPath());
+
+        System.out.println(root.get(2).get(2).getSize());
+
+        System.out.println(root.get(2).get(2).get(0).getPath());
+
+        System.out.println(root.get(2).get(2).get(0).getSize());
     }
 }

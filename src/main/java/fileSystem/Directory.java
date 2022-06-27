@@ -3,65 +3,47 @@ package main.java.fileSystem;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Directory extends SystemTypes {
+public class Directory extends FileSystem {
 
-    private int size;
-
-    private List<SystemTypes> content;
+    private final int size = 1;
+    private List<FileSystem> content;
 
     public Directory(String name) {
         super(name);
-        this.size = 1;
         content = new ArrayList<>();
     }
 
     @Override
-    public SystemTypes get(int index) {
+    public FileSystem get(int index) {
         return content.get(index);
     }
 
     @Override
-    public void add(SystemTypes types) {
+    public void add(FileSystem types) {
+        types.setPath(getPath());
         content.add(types);
     }
 
     @Override
-    public List<SystemTypes> getContent() {
+    public List<FileSystem> getContent() {
         return this.content;
     }
 
     @Override
-    public int getContentSize(SystemTypes node, int sum) {
-        for (SystemTypes data : node.getContent()) {
+    public int getSize() {
+        int size = this.size;
+        for (FileSystem data : content) {
             if (data instanceof Directory) {
-                sum = 1 + getContentSize(data, sum);
-            } else if (data instanceof File) {
-                sum += data.getSize();
-            }
-        }
-        return sum;
-    }
-
-    @Override
-    public String getPath(SystemTypes node, String path) {
-        for (SystemTypes data : node.getContent()) {
-            if (data instanceof Directory) {
-                if (data.getName() == this.getName()) {
-                    path += "/" + data.getName();
-                    return path;
-                } else if (((Directory) data).content.isEmpty()) {
+                if (data.getContent().isEmpty()) {
+                    size += data.getSize();
                     continue;
                 } else {
-                    path += "/" + data.getName() + getPath(data, "");
+                    size += data.getSize();
                 }
+            } else if (data instanceof File) {
+                size += data.getSize();
             }
         }
-        return path;
+        return size;
     }
-
-    @Override
-    public int getSize() {
-        return this.size;
-    }
-
 }
