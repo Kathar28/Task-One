@@ -2,6 +2,8 @@ package main.java.fileSystem;
 
 public class TextFile extends Files {
 
+    private final int size = 1;
+
     private Files parent;
 
     private String text;
@@ -23,9 +25,9 @@ public class TextFile extends Files {
     @Override
     public int getSize() {
         if (text == null) {
-            return 0;
+            return size;
         } else {
-            return text.length();
+            return size + text.length();
         }
     }
 
