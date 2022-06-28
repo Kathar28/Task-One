@@ -4,25 +4,28 @@ public class Main {
 
     public static void main(String[] args) {
         Directory root = new Directory("root");
-        root.addElement(new File("file0.txt", 150));
-        root.addElement(new File("file1.txt", 250));
-        root.addElement(new Directory("directory"));
-        root.getElement(2).addElement(new File("file2.txt", 250));
-        root.getElement(2).addElement(new File("file3.txt", 250));
-        root.getElement(2).addElement(new Directory("directory1"));
-        root.getElement(2).getElement(2).addElement(new File("file4.txt", 250));
-        root.getElement(2).addElement(new Directory("directory2"));
+        Directory dir1 = new Directory("dir1", root);
+        Directory dir2 = new Directory("dir2", root);
+        TextFile file1 = new TextFile("file1.txt", dir1, "Hello");
+        TextFile file2 = new TextFile("file2.txt", dir1);
 
-        System.out.println(root.getPath());
+        System.out.println(dir1.getPath());
+        System.out.println(dir1.getSize());
 
-        System.out.println(root.getSize());
+        System.out.println(file1.getPath());
 
-        System.out.println(root.getElement(2).getElement(2).getPath());
+        file1.moveTo(dir2);
+        System.out.println(dir1.getSize());
 
-        System.out.println(root.getElement(2).getElement(2).getSize());
+        System.out.println(file1.getPath());
 
-        System.out.println(root.getElement(2).getElement(2).getElement(0).getPath());
+        Directory dir3 = new Directory("dir3", dir1);
+        Directory dir4 = new Directory("dir4", dir3);
 
-        System.out.println(root.getElement(2).getElement(2).getElement(0).getSize());
+        System.out.println(dir4.getPath());
+
+        dir4.moveTo(dir2);
+
+        System.out.println(dir4.getPath());
     }
 }

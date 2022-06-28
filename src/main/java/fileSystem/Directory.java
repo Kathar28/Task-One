@@ -1,38 +1,27 @@
 package main.java.fileSystem;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class Directory extends FileSystem {
+public class Directory extends Files {
 
     private final int size = 1;
-    private List<FileSystem> content;
+
+    private Files parent;
 
     public Directory(String name) {
         super(name);
-        content = new ArrayList<>();
     }
 
-    @Override
-    public FileSystem getElement(int index) {
-        return content.get(index);
-    }
-
-
-    public void addElement(FileSystem types) {
-        types.setPath(getPath());
-        content.add(types);
-    }
-
-    @Override
-    public List<FileSystem> getContent() {
-        return this.content;
+    public Directory(String name, Files file) {
+        super(name);
+        this.parent = file;
+        file.getContent().add(this);
     }
 
     @Override
     public int getSize() {
         int size = this.size;
-        for (FileSystem data : content) {
+        for (Files data : getContent()) {
             if (data instanceof Directory) {
                 if (data.getContent().isEmpty()) {
                     size += data.getSize();
@@ -40,10 +29,34 @@ public class Directory extends FileSystem {
                 } else {
                     size += data.getSize();
                 }
-            } else if (data instanceof File) {
+            } else if (data instanceof TextFile) {
                 size += data.getSize();
             }
         }
         return size;
+    }
+
+    @Override
+    public String getPath() {
+        if (this.parent == null) {
+            return this.getName();
+        }
+        return this.parent.getPath() + "/" + this.getName();
+    }
+
+    public Files getParent() {
+        return parent;
+    }
+
+    @Override
+    public void moveTo(Directory to) {
+        to.getContent().add(this);
+        this.parent.getContent().remove(this);
+        for (Files data : this.parent.getContent()) {
+            if (data == this) {
+                this.getContent().remove(this);
+            }
+        }
+        this.parent = to;
     }
 }
