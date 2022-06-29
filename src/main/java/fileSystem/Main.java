@@ -8,6 +8,7 @@ public class Main {
         Directory dir2 = new Directory("dir2", root);
         TextFile file1 = new TextFile("file1.txt", dir1, "Hello");
         TextFile file2 = new TextFile("file2.txt", dir1);
+        TextFile file3 = new TextFile("file3.txt", root);
 
         System.out.println(dir1.getPath());
         System.out.println(dir1.getSize());

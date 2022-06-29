@@ -22,16 +22,7 @@ public class Directory extends Files {
     public int getSize() {
         int size = this.size;
         for (Files data : getContent()) {
-            if (data instanceof Directory) {
-                if (data.getContent().isEmpty()) {
-                    size += data.getSize();
-                    continue;
-                } else {
-                    size += data.getSize();
-                }
-            } else if (data instanceof TextFile) {
-                size += data.getSize();
-            }
+            size += data.getSize();
         }
         return size;
     }
@@ -52,11 +43,6 @@ public class Directory extends Files {
     public void moveTo(Directory to) {
         to.getContent().add(this);
         this.parent.getContent().remove(this);
-        for (Files data : this.parent.getContent()) {
-            if (data == this) {
-                this.getContent().remove(this);
-            }
-        }
         this.parent = to;
     }
 }
